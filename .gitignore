@@ -5,6 +5,7 @@ node_modules
 
 nodecrud-b3a6b-firebase-adminsdk-jc17w-76ba009dc2.json
 # local env files
+.env
 .env.local
 .env.*.local
 
