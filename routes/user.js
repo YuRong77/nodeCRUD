@@ -6,7 +6,18 @@ const user = fireData.ref("user"); //通常同一支檔案 都是改同一個資
 router.get("/getList", (req, res) => {
   user.once("value").then((snapshot) => {
     const list = snapshot.val();
-    res.json(list);
+    const List = []
+    Object.keys(list).forEach(key=>{
+      List.push({
+        id: key,
+        content:list[key].content
+      })
+    })
+    res.json({
+      success: true,
+      Result: List,
+      message: '取得清單'
+    });
   });
 });
 
