@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
 
-// firebase
-// const admin = require("firebase-admin");
-// const serviceAccount = require("./nodecrud-b3a6b-firebase-adminsdk-jc17w-76ba009dc2.json");
-const fireData = require('./connections/firebase_admin')
+const bodyParser = require('body-parser'); //讀取 req.body 用
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 const user = require('./routes/user')
 app.use('/user',user)
@@ -13,27 +12,27 @@ app.get("/", (req, res) => {
   res.send('hello')
 });
 
-// admin.initializeApp({
-//   credential: admin.credential.cert(serviceAccount),
-//   databaseURL: "https://nodecrud-b3a6b-default-rtdb.firebaseio.com",
-// });
 
-// const fireData = admin.database();
-
-fireData
-  .ref("test")
-  .set({ title2: "hello" })
-  .then(() => {
-    fireData.ref("test").once("value", (snapshot) => {
-      console.log(snapshot.val());
-    });
-  });
+const fireData = require('./connections/firebase_admin')
+// fireData
+//   .ref("test")
+//   .set({ title2: "hello" })
+//   .then(() => {
+//     fireData.ref("test").once("value", (snapshot) => {
+//       console.log(snapshot.val());
+//     });
+//   });
 
 // fireData.ref("test").once("value", (snapshot) => {
-//   console.log(snapshot.val());
+//   const list = snapshot.val() 
+//   console.log(list);
 // });
 
-const port = process.env.PORT || 5500;
+// fireData.ref("test").once("value").then( snapshot => {
+//   const list = snapshot.val() 
+// });
+
+const port = process.env.PORT || 8800;
 app.listen(port, () => {
   console.log(`start at http://127.0.0.1:${port}`);
 });
