@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 
 const cors = require("cors"); // 處理CORS npm install cors
 const corsOptions = {
-  origin: ["https://yurong77.github.io/blogTest/", "http://127.0.0.1:5500"],
+  origin: ["https://yurong77.github.io", "http://127.0.0.1:5500"],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS",
   allowedHeaders: ["Content-Type", "Authorization"],
 };
